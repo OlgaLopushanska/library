@@ -25,7 +25,7 @@ public class Config implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 
     @Autowired
-    public SpringConfig(ApplicationContext applicationContext) {
+    public Config(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
@@ -61,7 +61,7 @@ public class Config implements WebMvcConfigurer {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/first_db");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/library");
         dataSource.setUsername("postgres");
         dataSource.setPassword("user");
 		//dataSource.addScript("classpath:table.sql");

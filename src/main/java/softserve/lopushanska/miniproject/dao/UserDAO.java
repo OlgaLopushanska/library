@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import ru.alishev.springcourse.models.Person;
+import softserve.lopushanska.miniproject.model.User;
 
 import java.util.List;
 
@@ -14,15 +14,15 @@ public class UserDAO {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public PersonDAO(JdbcTemplate jdbcTemplate) {
+    public UserDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> index() {
+    public List<User> index() {
         return jdbcTemplate.query("SELECT * FROM User", new BeanPropertyRowMapper<>(User.class));
     }
 
-    public Person show(int id) {
+    public User show(int id) {
         return jdbcTemplate.query("SELECT * FROM User WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(User.class))
                 .stream().findAny().orElse(null);
     }

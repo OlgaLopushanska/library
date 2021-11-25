@@ -11,7 +11,7 @@ public class User {
 	}
 
 	public User(int Id, String name, int age, String email, String placeOfWork) {
-		this.Id = tId;
+		this.Id = Id;
 		this.name = name;
 		this.age = age;
 		this.email = email;

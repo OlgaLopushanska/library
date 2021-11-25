@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import java.util.EnumSet;
 
 
-public class SpringMvcDispatcherServletIntitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return null;
@@ -19,7 +19,7 @@ public class SpringMvcDispatcherServletIntitializer extends AbstractAnnotationCo
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{SpringConfig.class};
+        return new Class[]{Config.class};
     }
 
     @Override
