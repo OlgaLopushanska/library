@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<p>All Books :</p>
+<div th:each="book : ${allbooks}">
+
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPageNumber()}">user</a>
+</div>
+<p>Checked Books :</p>
+<div th:each="book : ${checked}">
+
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPageNumber()}">user</a>
+</div>
+<br/>
+<hr/>
+
+<!--<a href="/books/new">Create new book</a>-->
+
+</body>
+</html>

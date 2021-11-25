@@ -1,12 +1,17 @@
 package softserve.lopushanska.miniproject.config;
 
+//import jdk.internal.loader.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -64,7 +69,15 @@ public class Config implements WebMvcConfigurer {
         dataSource.setUrl("jdbc:postgresql://localhost:5432/library");
         dataSource.setUsername("postgres");
         dataSource.setPassword("user");
-		//dataSource.addScript("classpath:table.sql");
+
+        ClassPathResource initSchema = new ClassPathResource("table.sql");
+        DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema);
+        DatabasePopulatorUtils.execute(databasePopulator, dataSource);
+        initSchema = new ClassPathResource("data.sql");
+        databasePopulator = new ResourceDatabasePopulator(initSchema);
+        DatabasePopulatorUtils.execute(databasePopulator, dataSource);
+
+        //dataSource.addScript("classpath:table.sql");
 		//dataSource.addScript("classpath:data.sql");
         return dataSource;
     }
